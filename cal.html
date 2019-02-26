@@ -1,0 +1,46 @@
+<br>
+<!--<input type="number" id="year" name="year" placeholder="입사년도">-->
+<br>
+<select id="occ" name="occ">
+	<option value="0">조리실무사</option>
+	<option value="1">조리사</option>
+	<option value="2">행정실무사</option>
+	<option value="3">특수교육지도사</option>
+	<option value="4">유치원 방과후 전담사</option>
+	<option value="5">초등보육전담사</option>
+	<option value="6">사서</option>
+	<option value="7">영양사</option>
+</select>
+<br><br>
+<input type="text" id="allowance" name="allowance" placeholder="근속수당"><br><br>
+<br><br>
+<input type="button" id="cal" name="cal" onclick="cal()" value="계산하기"><br><br>
+<br><br><br><br>
+합계 : <input type="text" name="sumResult" id="sumResult" readonly><br><br>
+일통상임금 : <input type="text" name="dayPay" id="dayPay" readonly><br><br>
+
+
+<script>
+var occDefault = ['1657730', '1740610', '1657730', '1657730', '1243290', '1243290', '1850910', '1850910'];
+var occRisk = ['50000', '50000', '0', '0', '0', '0', '20000', '133500'];
+//var serviceAllowance = ['50000', '50000', '0', '0', '0', '0', '20000', '133500'];
+
+function cal()
+{
+	//var y = 2018 - document.getElementById('year').value;
+	var occ = document.getElementById('occ').value;
+	var allowance = document.getElementById('allowance').value;
+	var sumResult = Number(occDefault[occ]) + Number(occRisk[occ]) + 265000 + Number(allowance);
+	document.getElementById('sumResult').value = numberWithCommas(sumResult);
+	document.getElementById('dayPay').value = numberWithCommas( Math.round( ( Number(sumResult) / 209 ) * 8 ) );
+	//var daypay = 
+}
+
+function numberWithCommas(x) {
+    x = x.toString();
+    var pattern = /(-?\d+)(\d{3})/;
+    while (pattern.test(x))
+        x = x.replace(pattern, "$1,$2");
+    return x;
+}
+</script>
